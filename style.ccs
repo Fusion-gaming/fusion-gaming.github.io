@@ -1,0 +1,349 @@
+/* General Body and Container Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, readable font */
+    margin: 0;
+    padding: 0;
+    background-color: #e0f2f7; /* Light blue background */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Links Styling */
+a {
+    color: #007bff; /* Primary blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Headings Styling */
+h1, h2, h3 {
+    color: #1a2a3a; /* Darker blue-grey for headings */
+    margin-bottom: 0.5em;
+}
+
+/* Header Section */
+header {
+    background-color: #283e5a; /* Dark blue header */
+    color: #fff;
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    color: #fff;
+    font-size: 2.5em;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows navigation items to wrap on smaller screens */
+}
+
+header nav ul li {
+    margin: 0 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s ease-in-out;
+}
+
+header nav ul li a:hover {
+    color: #87ceeb; /* Lighter blue on hover */
+    text-decoration: none;
+}
+
+/* Main Content Area */
+main {
+    padding: 20px;
+    max-width: 1200px; /* Limit content width */
+    margin: 20px auto; /* Center main content */
+    background-color: #ffffff; /* White background for main content area */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Section Styling */
+section {
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee; /* Separator between sections */
+}
+
+section:last-child {
+    border-bottom: none; /* No separator for the last section */
+}
+
+/* Hero Section Specifics */
+#hero {
+    text-align: center;
+    background-color: #007bff; /* Vibrant blue background */
+    color: #fff;
+    padding: 80px 20px;
+    margin-bottom: 0; /* Remove bottom margin if this is the first section in main */
+    border-radius: 8px 8px 0 0; /* Rounded top corners for consistency with main */
+    box-shadow: none; /* No extra shadow on hero */
+}
+
+#hero h2 {
+    color: #fff;
+    font-size: 3em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+#hero p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#hero button {
+    background-color: #28a745; /* Green button */
+    color: #fff;
+    border: none;
+    padding: 18px 35px;
+    font-size: 1.2em;
+    border-radius: 30px; /* Pill-shaped button */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#hero button:hover {
+    background-color: #218838;
+    transform: translateY(-3px); /* Subtle lift effect on hover */
+}
+
+/* Games Grid Layout */
+#games h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns */
+    gap: 30px; /* Space between game cards */
+    padding: 0 20px;
+}
+
+.game-card {
+    background-color: #f0f8ff; /* Light azure background */
+    border: 1px solid #cfe2f3; /* Light blue border */
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px; /* Ensure cards have a minimum height */
+}
+
+.game-card:hover {
+    transform: translateY(-8px); /* More pronounced lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.game-card h3 {
+    margin-top: 0;
+    color: #0056b3; /* Darker blue for game titles */
+    font-size: 1.5em;
+}
+
+.game-card p {
+    font-size: 0.95em;
+    color: #555;
+    flex-grow: 1; /* Allows description to take available space */
+}
+
+.game-card .play-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 25px; /* Pill-shaped button */
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.game-card .play-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+    text-decoration: none;
+}
+
+/* Ad Placement Section */
+#ad-placement-1 {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f8f9fa; /* Very light grey for ad section */
+    border: 2px dashed #cccccc; /* Dashed border to highlight ad area */
+    margin-top: 40px; /* More space above ad section */
+    border-radius: 12px;
+}
+
+.ad-container {
+    min-height: 150px; /* Give some visual space for the ad */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    color: #888;
+    font-size: 1.1em;
+}
+
+/* Contact Form Section */
+#contact h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Space between form elements */
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f0f8ff; /* Light azure background for form */
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+#contact form input[type="text"],
+#contact form input[type="email"],
+#contact form textarea {
+    padding: 15px;
+    border: 1px solid #b3d7f9; /* Light blue border for inputs */
+    border-radius: 8px;
+    font-size: 1.1em;
+    width: calc(100% - 30px); /* Adjust width for padding */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+#contact form textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+    min-height: 120px;
+}
+
+#contact form button[type="submit"] {
+    background-color: #28a745; /* Green submit button */
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: center; /* Center the button */
+}
+
+#contact form button[type="submit"]:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Footer Styling */
+footer {
+    background-color: #283e5a; /* Match header background */
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 40px;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    header nav ul {
+        flex-direction: column; /* Stack navigation items vertically */
+    }
+
+    header nav ul li {
+        margin: 8px 0; /* Adjust vertical margin */
+    }
+
+    #hero h2 {
+        font-size: 2.2em;
+    }
+
+    #hero p {
+        font-size: 1.1em;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    section {
+        padding: 30px 15px;
+    }
+
+    .game-grid {
+        grid-template-columns: 1fr; /* Single column for game cards on small screens */
+        padding: 0 10px;
+    }
+
+    .game-card {
+        padding: 20px;
+        min-height: auto; /* Allow height to adjust */
+    }
+
+    #ad-placement-1 {
+        padding: 30px 15px;
+    }
+
+    #contact form {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    #hero h2 {
+        font-size: 1.8em;
+    }
+
+    #hero p {
+        font-size: 1em;
+    }
+
+    #hero button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    .game-card h3 {
+        font-size: 1.3em;
+    }
+
+    .game-card .play-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
