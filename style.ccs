@@ -91,9 +91,9 @@ section:last-child {
     background-color: #007bff; /* Vibrant blue background */
     color: #fff;
     padding: 80px 20px;
-    margin-bottom: 0; /* Remove bottom margin if this is the first section in main */
-    border-radius: 8px 8px 0 0; /* Rounded top corners for consistency with main */
-    box-shadow: none; /* No extra shadow on hero */
+    margin-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    box-shadow: none;
 }
 
 #hero h2 {
@@ -259,7 +259,7 @@ section:last-child {
     transform: translateY(-2px);
 }
 
-/* Footer Styling */
+/* Footer Styles */
 footer {
     background-color: #283e5a; /* Match header background */
     color: #fff;
