@@ -46,11 +46,8 @@ function createGuessTheNumberGame(containerId) {
             messageDisplay.textContent = `Game Over! The number was ${randomNumber}.`;
             messageDisplay.style.color = 'red';
             endGame(false);
-        } else if (userGuess < randomNumber) {
-            messageDisplay.textContent = `Too low! Try again. Attempts left: ${maxAttempts - attempts}`;
-            messageDisplay.style.color = 'orange';
         } else {
-            messageDisplay.textContent = `Too high! Try again. Attempts left: ${maxAttempts - attempts}`;
+            messageDisplay.textContent = `Too ${userGuess < randomNumber ? 'low' : 'high'}! Try again. Attempts left: ${maxAttempts - attempts}`;
             messageDisplay.style.color = 'orange';
         }
         guessInput.value = ''; // Clear input after guess
@@ -105,7 +102,6 @@ function createGuessTheNumberGame(containerId) {
 }
 
 // Initialize the game when the DOM content is fully loaded
-// This ensures that the 'guess-game-container' element exists before the script tries to access it.
 document.addEventListener('DOMContentLoaded', () => {
     createGuessTheNumberGame('guess-game-container');
 });
