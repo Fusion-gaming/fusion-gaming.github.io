@@ -1,7 +1,7 @@
 /* Google Fonts Import - Rubik for headings, Open Sans for body text */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Rubik:wght@500;700&display=swap');
 
-/* Global Styles & Resets */
+/* Global Styles & CSS Variables */
 :root {
     --primary-color: #6a11cb; /* Deep purple */
     --secondary-color: #20e3b2; /* Vibrant teal */
@@ -22,7 +22,7 @@ body {
     background-color: var(--light-bg);
     color: var(--text-color-dark);
     line-height: 1.6;
-    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    scroll-behavior: smooth;
 }
 
 /* Links */
@@ -49,7 +49,7 @@ h1 { font-size: 2.8em; }
 h2 { font-size: 2.2em; }
 h3 { font-size: 1.6em; }
 
-/* Buttons - General Styling */
+/* Buttons */
 button {
     background-color: var(--secondary-color);
     color: var(--dark-bg);
@@ -57,7 +57,7 @@ button {
     padding: 15px 30px;
     font-size: 1.1em;
     font-weight: 600;
-    border-radius: 50px; /* More rounded look */
+    border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     text-transform: uppercase;
@@ -65,7 +65,7 @@ button {
 }
 
 button:hover {
-    background-color: #1ed0a0; /* Slightly darker teal */
+    background-color: #1ed0a0;
     transform: translateY(-3px);
     box-shadow: 0 8px 15px var(--shadow-medium);
 }
@@ -77,9 +77,9 @@ header {
     padding: 1.5rem 0;
     text-align: center;
     box-shadow: 0 4px 8px var(--shadow-medium);
-    position: sticky; /* Makes header stick to top */
+    position: sticky;
     top: 0;
-    z-index: 1000; /* Ensures header is above other content */
+    z-index: 1000;
 }
 
 header h1 {
@@ -156,7 +156,7 @@ section:last-child {
 /* Hero Section Specifics */
 #hero {
     text-align: center;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #833ab4 100%); /* Gradient background */
+    background: linear-gradient(135deg, var(--primary-color) 0%, #833ab4 100%);
     color: var(--text-color-light);
     padding: 100px 20px;
     margin-bottom: 0;
@@ -182,7 +182,7 @@ section:last-child {
 
 /* Games Grid Layout */
 #games {
-    padding-top: 60px; /* Adjust padding for games section */
+    padding-top: 60px;
 }
 #games h2 {
     text-align: center;
@@ -194,7 +194,7 @@ section:last-child {
 .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 35px; /* Increased space between cards */
+    gap: 35px;
     padding: 0 10px;
 }
 
@@ -209,9 +209,9 @@ section:last-child {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 300px; /* Slightly taller cards */
-    position: relative; /* For potential badges or overlays */
-    overflow: hidden; /* Ensures content doesn't spill */
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
 }
 
 .game-card::before {
@@ -221,13 +221,13 @@ section:last-child {
     left: 0;
     width: 100%;
     height: 5px;
-    background-color: var(--primary-color); /* A subtle top border */
+    background-color: var(--primary-color);
     transition: height 0.3s ease;
 }
 
 .game-card:hover::before {
-    height: 100%; /* Expands on hover */
-    opacity: 0.1; /* Make it subtle */
+    height: 100%;
+    opacity: 0.1;
 }
 
 .game-card:hover {
@@ -255,7 +255,7 @@ section:last-child {
     color: var(--text-color-light);
     padding: 12px 28px;
     border-radius: 25px;
-    margin-top: auto; /* Push button to bottom */
+    margin-top: auto;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-transform: uppercase;
@@ -263,16 +263,14 @@ section:last-child {
 }
 
 .game-card .play-button:hover {
-    background-color: #5a0eac; /* Slightly darker purple */
+    background-color: #5a0eac;
     transform: scale(1.05);
     text-decoration: none;
 }
 
-/* Removed Ad Placement Section Styles from here */
-
 /* Contact Form Section */
 #contact {
-    padding-top: 60px; /* Adjust padding */
+    padding-top: 60px;
 }
 #contact h2 {
     text-align: center;
@@ -302,7 +300,7 @@ section:last-child {
     font-size: 1.1em;
     width: calc(100% - 30px);
     box-sizing: border-box;
-    background-color: var(--card-bg); /* White background for inputs */
+    background-color: var(--card-bg);
     color: var(--text-color-dark);
 }
 
@@ -412,8 +410,6 @@ footer {
         font-size: 1.6em;
     }
 
-    /* Removed ad placement media query styles */
-
     #contact form {
         padding: 25px;
         gap: 15px;
@@ -444,7 +440,7 @@ footer {
     }
 
     .game-grid {
-        grid-template-columns: 1fr; /* Stack cards on smallest screens */
+        grid-template-columns: 1fr;
         padding: 0;
         gap: 20px;
     }
