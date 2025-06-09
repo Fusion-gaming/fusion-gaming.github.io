@@ -217,28 +217,40 @@
 
   </style>
   <script>
-    let secretNumber = Math.floor(Math.random() * 10) + 1;
+  let secretNumber = Math.floor(Math.random() * 10) + 1;
+  let wrongGuesses = 0;
 
-    function checkGuess() {
-      const input = document.getElementById('guess-input');
-      const feedback = document.getElementById('feedback');
-      const guess = parseInt(input.value);
+  function checkGuess() {
+    const input = document.getElementById('guess-input');
+    const feedback = document.getElementById('feedback');
+    const guess = parseInt(input.value);
 
-      if (isNaN(guess) || guess < 1 || guess > 10) {
-        feedback.textContent = "Please enter a number between 1 and 10.";
-        return;
-      }
+    if (isNaN(guess) || guess < 1 || guess > 10) {
+      feedback.textContent = "Please enter a number between 1 and 10.";
+      return;
+    }
 
-      if (guess === secretNumber) {
-        feedback.textContent = "🎉 Correct! You guessed it!";
-      } else if (guess < secretNumber) {
-      feedback.textContent = "Too low! Try a higher number.";
+    if (guess === secretNumber) {
+      feedback.textContent = "🎉 Correct! You guessed it!";
+      wrongGuesses = 0;
+      secretNumber = Math.floor(Math.random() * 10) + 1;
+    } else {
+      wrongGuesses++;
+      if (wrongGuesses >= 3) {
+        feedback.textContent = `❌ 3 incorrect guesses! The number was ${secretNumber}. It has now been reset. Try again!`;
+        wrongGuesses = 0;
+        secretNumber = Math.floor(Math.random() * 10) + 1;
       } else {
-        feedback.textContent = "Too high! Try a lower number.";
+        feedback.textContent = guess < secretNumber
+          ? "Too low! Try a higher number."
+          : "Too high! Try a lower number.";
       }
     }
-  </script>
 
+    input.value = '';
+  }
+</script>
+  
 </head>
 <body>
   <header>
