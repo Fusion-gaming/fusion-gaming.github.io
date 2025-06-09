@@ -1,95 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fusion Gaming Hub - Play Awesome Games!</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fusion Gaming Hub - Play Awesome Games!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e0f2f7;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #283e5a;
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    header nav ul li {
+      margin: 0 15px;
+    }
+
+    header nav ul li a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    header nav ul li a:hover {
+      color: #87ceeb;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    #hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    #hero h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    #hero p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    #hero button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #hero button:hover {
+      background-color: #0056b3;
+    }
+
+    #games h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      background-color: #f0f9ff;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .game-card h3 {
+      margin-top: 0;
+    }
+
+    .game-card p {
+      font-size: 0.95rem;
+    }
+
+    .play-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .play-button:hover {
+      background-color: #218838;
+    }
+
+    #ad-placement-1, #contact {
+      margin-top: 40px;
+    }
+
+    .ad-container {
+      background-color: #f8f8f8;
+      padding: 20px;
+      text-align: center;
+      border: 1px dashed #ccc;
+      border-radius: 8px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    form input, form textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    form button {
+      align-self: start;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      background-color: #283e5a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9em;
+      margin-top: auto;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      main {
+        margin: 10px;
+        padding: 15px;
+      }
+
+      #hero h2 {
+        font-size: 1.5rem;
+      }
+
+      #hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Fusion Gaming Hub!</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#games">Games</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <h1>Welcome to Fusion Gaming Hub!</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section id="hero">
-            <h2>Play the Latest & Greatest Games!</h2>
-            <p>Dive into a world of fun and excitement. Explore our collection of amazing games.</p>
-            <button>Start Playing Now!</button>
-        </section>
+  <main>
+    <section id="hero">
+      <h2>Play the Latest & Greatest Games!</h2>
+      <p>Dive into a world of fun and excitement. Explore our collection of amazing games.</p>
+      <button>Start Playing Now!</button>
+    </section>
 
-        <section id="games">
-            <h2>Our Games</h2>
-            <div class="game-grid">
-                <div class="game-card">
-                    <h3>Getting Over It</h3>
-                    <p>Climb a mountain with a hammer and pot. A notorious challenge!</p>
-                    <a href="games/gettingoverit-embed-page.html" class="play-button">Play Now</a>
-                </div>
-                <div class="game-card">
-                    <h3>Arena Battle</h3>
-                    <p>Step into the arena and fight for glory in this intense game!</p>
-                    <a href="games/arena-embed-page.html" class="play-button">Play Now</a>
-                </div>
-                <div class="game-card">
-                    <h3>Snow Rider 3D</h3>
-                    <p>Race down snowy slopes in this exhilarating 3D winter adventure!</p>
-                    <a href="games/snowrider-embed-page.html" class="play-button">Play Now</a>
-                </div>
-                <div class="game-card">
-                    <h3>Space Shooter Defender</h3>
-                    <p>Defend the galaxy from alien invaders in this arcade shooter!</p>
-                    <a href="games/game4-wrapper.html" class="play-button">Play Now</a>
-                </div>
-                <div class="game-card">
-                    <h3>Puzzle Master Mind</h3>
-                    <p>Challenge your brain with intriguing puzzles and logic challenges.</p>
-                    <a href="games/game5-wrapper.html" class="play-button">Play Now</a>
-                </div>
-                <div class="game-card">
-                    <h3>Tiny Tower Builder</h3>
-                    <p>Build the tallest tower you can imagine in this addictive clicker!</p>
-                    <a href="games/game6-wrapper.html" class="play-button">Play Now</a>
-                </div>
-                <div class="game-card">
-                    <h3>Quick Guess Game</h3>
-                    <p>Can you guess the secret number before time runs out? Fast-paced fun!</p>
-                    <div id="guess-game-container">
-                        <p>Loading "Quick Guess Game" example...</p>
-                    </div>
-                    </div>
-            </div>
-        </section>
+    <section id="games">
+      <h2>Our Games</h2>
+      <div class="game-grid">
+        <div class="game-card">
+          <h3>Getting Over It</h3>
+          <p>Climb a mountain with a hammer and pot. A notorious challenge!</p>
+          <a href="games/gettingoverit-embed-page.html" class="play-button">Play Now</a>
+        </div>
+        <div class="game-card">
+          <h3>Arena Battle</h3>
+          <p>Step into the arena and fight for glory in this intense game!</p>
+          <a href="games/arena-embed-page.html" class="play-button">Play Now</a>
+        </div>
+        <div class="game-card">
+          <h3>Snow Rider 3D</h3>
+          <p>Race down snowy slopes in this exhilarating 3D winter adventure!</p>
+          <a href="games/snowrider-embed-page.html" class="play-button">Play Now</a>
+        </div>
+        <div class="game-card">
+          <h3>Space Shooter Defender</h3>
+          <p>Defend the galaxy from alien invaders in this arcade shooter!</p>
+          <a href="games/game4-wrapper.html" class="play-button">Play Now</a>
+        </div>
+        <div class="game-card">
+          <h3>Puzzle Master Mind</h3>
+          <p>Challenge your brain with intriguing puzzles and logic challenges.</p>
+          <a href="games/game5-wrapper.html" class="play-button">Play Now</a>
+        </div>
+        <div class="game-card">
+          <h3>Tiny Tower Builder</h3>
+          <p>Build the tallest tower you can imagine in this addictive clicker!</p>
+          <a href="games/game6-wrapper.html" class="play-button">Play Now</a>
+        </div>
+        <div class="game-card">
+          <h3>Quick Guess Game</h3>
+          <p>Can you guess the secret number before time runs out? Fast-paced fun!</p>
+          <div id="guess-game-container">
+            <p>Loading "Quick Guess Game" example...</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section id="ad-placement-1">
-            <h2>Advertisement</h2>
-            <div class="ad-container">
-                <p>Ad will appear here (e.g., from AdSense).</p>
-            </div>
-        </section>
+    <section id="ad-placement-1">
+      <h2>Advertisement</h2>
+      <div class="ad-container">
+        <p>Ad will appear here (e.g., from AdSense).</p>
+      </div>
+    </section>
 
-        <section id="contact">
-            <h2>Get in Touch</h2>
-            <p>Have questions or suggestions? We'd love to hear from you!</p>
-            <form>
-                <input type="text" placeholder="Your Name">
-                <input type="email" placeholder="Your Email">
-                <textarea placeholder="Your Message"></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
-    </main>
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <p>Have questions or suggestions? We'd love to hear from you!</p>
+      <form>
+        <input type="text" placeholder="Your Name" />
+        <input type="email" placeholder="Your Email" />
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2025 Fusion Gaming Hub. All rights reserved.</p>
-    </footer>
+  <footer>
+    <p>&copy; 2025 Fusion Gaming Hub. All rights reserved.</p>
+  </footer>
 </body>
 </html>
