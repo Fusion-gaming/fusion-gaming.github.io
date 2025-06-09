@@ -268,27 +268,7 @@ section:last-child {
     text-decoration: none;
 }
 
-/* Ad Placement Section */
-#ad-placement-1 {
-    text-align: center;
-    padding: 60px 20px;
-    background-color: var(--light-bg);
-    border: 2px dashed var(--border-color);
-    margin-top: 40px;
-    border-radius: 12px;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.05); /* Inner shadow for ad area */
-}
-
-.ad-container {
-    min-height: 180px; /* More visual space for the ad */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-style: italic;
-    color: #888;
-    font-size: 1.2em;
-    font-weight: 600;
-}
+/* Removed Ad Placement Section Styles from here */
 
 /* Contact Form Section */
 #contact {
@@ -432,9 +412,7 @@ footer {
         font-size: 1.6em;
     }
 
-    #ad-placement-1 {
-        padding: 40px 15px;
-    }
+    /* Removed ad placement media query styles */
 
     #contact form {
         padding: 25px;
