@@ -129,18 +129,6 @@
       background-color: #218838;
     }
 
-    #ad-placement-1, #contact {
-      margin-top: 40px;
-    }
-
-    .ad-container {
-      background-color: #f8f8f8;
-      padding: 20px;
-      text-align: center;
-      border: 1px dashed #ccc;
-      border-radius: 8px;
-    }
-
     form {
       display: flex;
       flex-direction: column;
@@ -196,6 +184,77 @@
       }
     }
   </style>
+  <script defer>
+    function createGuessTheNumberGame(containerId) {
+      const gameContainer = document.getElementById(containerId);
+      if (!gameContainer) return;
+
+      gameContainer.innerHTML = \`
+        <h4>Guess the Number (1-10)</h4>
+        <p>I'm thinking of a number...</p>
+        <input type="number" id="guessInput" min="1" max="10" placeholder="Enter your guess">
+        <button id="submitGuess">Guess!</button>
+        <p id="message"></p>
+        <button id="resetGame" style="display:none; margin-top:10px;">Play Again</button>
+      \`;
+
+      const randomNumber = Math.floor(Math.random() * 10) + 1;
+      let attempts = 0;
+      const maxAttempts = 3;
+
+      const guessInput = document.getElementById('guessInput');
+      const submitButton = document.getElementById('submitGuess');
+      const messageDisplay = document.getElementById('message');
+      const resetButton = document.getElementById('resetGame');
+
+      function checkGuess() {
+        const userGuess = parseInt(guessInput.value);
+        if (isNaN(userGuess) || userGuess < 1 || userGuess > 10) {
+          messageDisplay.textContent = 'Please enter a valid number between 1 and 10.';
+          return;
+        }
+
+        attempts++;
+        if (userGuess === randomNumber) {
+          messageDisplay.textContent = \`🎉 You guessed it! The number was \${randomNumber}.\`;
+          messageDisplay.style.color = 'green';
+          endGame();
+        } else if (attempts >= maxAttempts) {
+          messageDisplay.textContent = \`❌ Game Over! The number was \${randomNumber}.\`;
+          messageDisplay.style.color = 'red';
+          endGame();
+        } else {
+          messageDisplay.textContent = \`Too \${userGuess < randomNumber ? 'low' : 'high'}! Attempts left: \${maxAttempts - attempts}.\`;
+          messageDisplay.style.color = 'orange';
+        }
+        guessInput.value = '';
+      }
+
+      function endGame() {
+        guessInput.disabled = true;
+        submitButton.disabled = true;
+        resetButton.style.display = 'block';
+      }
+
+      function resetGame() {
+        createGuessTheNumberGame(containerId);
+      }
+
+      submitButton.addEventListener('click', checkGuess);
+      guessInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkGuess(); });
+      resetButton.addEventListener('click', resetGame);
+
+      gameContainer.style.padding = '15px';
+      gameContainer.style.backgroundColor = '#e6f7ff';
+      gameContainer.style.borderRadius = '8px';
+      gameContainer.style.border = '1px solid #cceeff';
+      gameContainer.style.marginTop = '10px';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      createGuessTheNumberGame('guess-game-container');
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -251,18 +310,11 @@
         </div>
         <div class="game-card">
           <h3>Quick Guess Game</h3>
-          <p>Can you guess the secret number before time runs out? Fast-paced fun!</p>
+          <p>Can you guess the secret number before time runs out?</p>
           <div id="guess-game-container">
-            <p>Loading "Quick Guess Game" example...</p>
+            <p>Loading "Quick Guess Game"...</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="ad-placement-1">
-      <h2>Advertisement</h2>
-      <div class="ad-container">
-        <p>Ad will appear here (e.g., from AdSense).</p>
       </div>
     </section>
 
