@@ -183,78 +183,62 @@
         font-size: 1rem;
       }
     }
-  </style>
-  <script defer>
-    function createGuessTheNumberGame(containerId) {
-      const gameContainer = document.getElementById(containerId);
-      if (!gameContainer) return;
 
-      gameContainer.innerHTML = \`
-        <h4>Guess the Number (1-10)</h4>
-        <p>I'm thinking of a number...</p>
-        <input type="number" id="guessInput" min="1" max="10" placeholder="Enter your guess">
-        <button id="submitGuess">Guess!</button>
-        <p id="message"></p>
-        <button id="resetGame" style="display:none; margin-top:10px;">Play Again</button>
-      \`;
-
-      const randomNumber = Math.floor(Math.random() * 10) + 1;
-      let attempts = 0;
-      const maxAttempts = 3;
-
-      const guessInput = document.getElementById('guessInput');
-      const submitButton = document.getElementById('submitGuess');
-      const messageDisplay = document.getElementById('message');
-      const resetButton = document.getElementById('resetGame');
-
-      function checkGuess() {
-        const userGuess = parseInt(guessInput.value);
-        if (isNaN(userGuess) || userGuess < 1 || userGuess > 10) {
-          messageDisplay.textContent = 'Please enter a valid number between 1 and 10.';
-          return;
-        }
-
-        attempts++;
-        if (userGuess === randomNumber) {
-          messageDisplay.textContent = \`🎉 You guessed it! The number was \${randomNumber}.\`;
-          messageDisplay.style.color = 'green';
-          endGame();
-        } else if (attempts >= maxAttempts) {
-          messageDisplay.textContent = \`❌ Game Over! The number was \${randomNumber}.\`;
-          messageDisplay.style.color = 'red';
-          endGame();
-        } else {
-          messageDisplay.textContent = \`Too \${userGuess < randomNumber ? 'low' : 'high'}! Attempts left: \${maxAttempts - attempts}.\`;
-          messageDisplay.style.color = 'orange';
-        }
-        guessInput.value = '';
-      }
-
-      function endGame() {
-        guessInput.disabled = true;
-        submitButton.disabled = true;
-        resetButton.style.display = 'block';
-      }
-
-      function resetGame() {
-        createGuessTheNumberGame(containerId);
-      }
-
-      submitButton.addEventListener('click', checkGuess);
-      guessInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkGuess(); });
-      resetButton.addEventListener('click', resetGame);
-
-      gameContainer.style.padding = '15px';
-      gameContainer.style.backgroundColor = '#e6f7ff';
-      gameContainer.style.borderRadius = '8px';
-      gameContainer.style.border = '1px solid #cceeff';
-      gameContainer.style.marginTop = '10px';
+   #guess-game {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #f0f9ff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      createGuessTheNumberGame('guess-game-container');
-    });
+    #guess-game input {
+      padding: 8px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+
+    #guess-game button {
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    
+    #guess-game button:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+  <script>
+    let secretNumber = Math.floor(Math.random() * 100) + 1;
+
+    function checkGuess() {
+      const input = document.getElementById('guess-input');
+      const feedback = document.getElementById('feedback');
+      const guess = parseInt(input.value);
+
+      if (isNaN(guess) || guess < 1 || guess > 100) {
+        feedback.textContent = "Please enter a number between 1 and 100.";
+        return;
+      }
+
+      if (guess === secretNumber) {
+        feedback.textContent = "🎉 Correct! You guessed it!";
+      } else if (guess < secretNumber) {
+      feedback.textContent = "Too low! Try a higher number.";
+      } else {
+        feedback.textContent = "Too high! Try a lower number.";
+      }
+    }
   </script>
+
 </head>
 <body>
   <header>
@@ -308,13 +292,16 @@
           <p>Build the tallest tower you can imagine in this addictive clicker!</p>
           <a href="games/game6-wrapper.html" class="play-button">Play Now</a>
         </div>
-        <div class="game-card">
-          <h3>Quick Guess Game</h3>
-          <p>Can you guess the secret number before time runs out?</p>
-          <div id="guess-game-container">
-            <p>Loading "Quick Guess Game"...</p>
-          </div>
-        </div>
+      </div>
+    </section>
+
+    <section id="guess-game">
+      <h2>Quick Guess Game</h2>
+      <p>Try to guess the secret number between 1 and 100!</p>
+      <div id="game-controls">
+        <input type="number" id="guess-input" placeholder="Enter your guess" min="1" max="100">
+        <button onclick="checkGuess()">Submit</button>
+        <p id="feedback"></p>
       </div>
     </section>
 
