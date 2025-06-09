@@ -217,15 +217,15 @@
 
   </style>
   <script>
-    let secretNumber = Math.floor(Math.random() * 100) + 1;
+    let secretNumber = Math.floor(Math.random() * 10) + 1;
 
     function checkGuess() {
       const input = document.getElementById('guess-input');
       const feedback = document.getElementById('feedback');
       const guess = parseInt(input.value);
 
-      if (isNaN(guess) || guess < 1 || guess > 100) {
-        feedback.textContent = "Please enter a number between 1 and 100.";
+      if (isNaN(guess) || guess < 1 || guess > 10) {
+        feedback.textContent = "Please enter a number between 1 and 10.";
         return;
       }
 
