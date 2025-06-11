@@ -23,7 +23,7 @@ body {
     background-color: var(--dark-bg);
     color: var(--light-text);
     line-height: 1.6;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
     overflow-x: hidden; /* Prevent horizontal scroll from subtle effects */
 }
 
@@ -504,7 +504,7 @@ footer {
     }
     button {
         padding: 12px 25px;
-        font-size: 1em;
+        font-size: 0.9em;
     }
 
     main {
