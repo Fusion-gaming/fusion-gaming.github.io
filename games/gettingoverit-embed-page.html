@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Over It - Play Now!</title>
-    <link rel="stylesheet" href="../main.css"> <style>
+    <link rel="stylesheet" href="../main.css">
+    <style>
         /* Specific styles for this game page layout for fullscreen experience */
         body {
             display: flex;
@@ -103,20 +104,27 @@
             width: 100%;
             border-top: 1px solid #333;
             box-sizing: border-box;
+            display: flex; /* Make it a flex container to align buttons */
+            justify-content: center; /* Center buttons horizontally */
+            gap: 20px; /* Space between buttons */
         }
 
-        .back-button {
+        .back-button, .fullscreen-button { /* Apply similar styling to both buttons */
             display: inline-block;
             background-color: #a020f0; /* Electric purple */
             color: white;
             padding: 12px 25px;
             border-radius: 5px;
-            text-decoration: none;
+            text-decoration: none; /* For back-button (is a link) */
+            border: none; /* For fullscreen-button (is a button) */
+            cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
             font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif; /* Match body font */
         }
 
-        .back-button:hover {
+        .back-button:hover, .fullscreen-button:hover {
             background-color: #00f0ff; /* Neon cyan on hover */
             transform: translateY(-2px);
         }
@@ -129,9 +137,13 @@
             .game-info h1 {
                 font-size: 1.5em;
             }
-            .back-button {
+            .back-button, .fullscreen-button {
                 padding: 10px 20px;
                 font-size: 0.9em;
+            }
+            .back-button-container {
+                flex-direction: column; /* Stack buttons on small screens */
+                gap: 10px;
             }
         }
     </style>
@@ -161,7 +173,7 @@
 
         <div class="back-button-container">
             <a href="../index.html#games" class="back-button">Back to Games</a>
-        </div>
+            <button class="fullscreen-button">Fullscreen</button> </div>
     </main>
 
     <footer>
