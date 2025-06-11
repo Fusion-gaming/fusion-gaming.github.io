@@ -124,8 +124,11 @@ function createGuessTheNumberGame(containerId) {
 
 // Ensure the DOM is fully loaded before trying to access elements
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize the "Guess the Number" game
-    createGuessTheNumberGame('guess-game-container');
+    // Initialize the "Guess the Number" game if its container exists
+    const guessGameContainer = document.getElementById('guess-game-container');
+    if (guessGameContainer) {
+        createGuessTheNumberGame('guess-game-container');
+    }
 
     // Functionality for the "Start Playing Now!" button in the hero section
     const startPlayingButton = document.querySelector('#hero button');
@@ -134,6 +137,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (startPlayingButton && gamesSection) {
         startPlayingButton.addEventListener('click', () => {
             gamesSection.scrollIntoView({ behavior: 'smooth' }); // Smoothly scrolls to the games section
+        });
+    }
+
+    // Fullscreen button functionality for game wrapper pages (will only run on game pages)
+    const fullscreenButton = document.querySelector('.fullscreen-button');
+    const gameIframe = document.querySelector('.game-iframe'); // Selects the first iframe found on the page
+
+    if (fullscreenButton && gameIframe) {
+        fullscreenButton.addEventListener('click', () => {
+            // Check for various browser implementations of fullscreen API
+            if (gameIframe.requestFullscreen) {
+                gameIframe.requestFullscreen();
+            } else if (gameIframe.mozRequestFullScreen) { /* Firefox */
+                gameIframe.mozRequestFullScreen();
+            } else if (gameIframe.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                gameIframe.webkitRequestFullscreen();
+            } else if (gameIframe.msRequestFullscreen) { /* IE/Edge */
+                gameIframe.msRequestFullscreen();
+            } else {
+                alert('Your browser does not support the Fullscreen API for iframes.');
+            }
         });
     }
 });
