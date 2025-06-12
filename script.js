@@ -60,7 +60,6 @@ function createGuessTheNumberGame(containerId) {
     }
 
     function resetGame() {
-        // Re-initialize the game
         createGuessTheNumberGame(containerId);
     }
 
@@ -74,43 +73,43 @@ function createGuessTheNumberGame(containerId) {
 
     // Basic styling for the game elements (can be moved to CSS if preferred)
     gameContainer.style.padding = '20px';
-    gameContainer.style.backgroundColor = 'var(--dark-bg)'; // Use CSS variable
+    gameContainer.style.backgroundColor = 'var(--dark-bg)';
     gameContainer.style.borderRadius = '10px';
-    gameContainer.style.border = '1px solid var(--border-dark)'; // Use CSS variable
+    gameContainer.style.border = '1px solid var(--border-dark)';
     gameContainer.style.marginTop = '20px';
-    gameContainer.style.boxShadow = '0 0 15px rgba(0, 240, 255, 0.2)'; // Subtle glow
+    gameContainer.style.boxShadow = '0 0 15px rgba(0, 240, 255, 0.2)';
 
     guessInput.style.padding = '12px';
     guessInput.style.margin = '15px 0';
-    guessInput.style.width = 'calc(100% - 24px)'; // Account for padding
+    guessInput.style.width = 'calc(100% - 24px)';
     guessInput.style.borderRadius = '8px';
     guessInput.style.border = '1px solid var(--border-dark)';
     guessInput.style.boxSizing = 'border-box';
-    guessInput.style.backgroundColor = '#2a2a2a'; // Match form inputs
+    guessInput.style.backgroundColor = '#2a2a2a';
     guessInput.style.color = 'var(--light-text)';
     guessInput.style.textAlign = 'center';
 
-    submitButton.style.backgroundColor = 'var(--accent-color)'; // Use accent color
+    submitButton.style.backgroundColor = 'var(--accent-color)';
     submitButton.style.color = 'var(--light-text)';
     submitButton.style.padding = '12px 25px';
     submitButton.style.border = 'none';
     submitButton.style.borderRadius = '5px';
     submitButton.style.cursor = 'pointer';
     submitButton.style.transition = 'background-color 0.3s ease, transform 0.2s ease';
-    submitButton.style.fontWeight = '700'; // Make it bold
+    submitButton.style.fontWeight = '700';
     submitButton.style.textTransform = 'uppercase';
 
     submitButton.onmouseover = function() { this.style.backgroundColor = 'var(--primary-color)'; this.style.transform = 'translateY(-2px)'; };
     submitButton.onmouseout = function() { this.style.backgroundColor = 'var(--accent-color)'; this.style.transform = 'translateY(0)'; };
 
-    resetButton.style.backgroundColor = 'var(--primary-color)'; // Use primary color
+    resetButton.style.backgroundColor = 'var(--primary-color)';
     resetButton.style.color = 'var(--light-text)';
     resetButton.style.padding = '10px 20px';
     resetButton.style.border = 'none';
     resetButton.style.borderRadius = '5px';
     resetButton.style.cursor = 'pointer';
     resetButton.style.transition = 'background-color 0.3s ease, transform 0.2s ease';
-    resetButton.style.fontWeight = '700'; // Make it bold
+    resetButton.style.fontWeight = '700';
     resetButton.style.textTransform = 'uppercase';
     resetButton.onmouseover = function() { this.style.backgroundColor = 'var(--secondary-color)'; this.style.transform = 'translateY(-2px)'; };
     resetButton.onmouseout = function() { this.style.backgroundColor = 'var(--primary-color)'; this.style.transform = 'translateY(0)'; };
@@ -136,27 +135,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (startPlayingButton && gamesSection) {
         startPlayingButton.addEventListener('click', () => {
-            gamesSection.scrollIntoView({ behavior: 'smooth' }); // Smoothly scrolls to the games section
+            gamesSection.scrollIntoView({ behavior: 'smooth' });
         });
     }
 
     // Fullscreen button functionality for game wrapper pages (will only run on game pages)
     const fullscreenButton = document.querySelector('.fullscreen-button');
-    const gameIframe = document.querySelector('.game-iframe'); // Selects the first iframe found on the page
+    const gameIframe = document.querySelector('.game-iframe');
 
     if (fullscreenButton && gameIframe) {
         fullscreenButton.addEventListener('click', () => {
-            // Check for various browser implementations of fullscreen API
-            if (gameIframe.requestFullscreen) {
-                gameIframe.requestFullscreen();
-            } else if (gameIframe.mozRequestFullScreen) { /* Firefox */
-                gameIframe.mozRequestFullScreen();
-            } else if (gameIframe.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-                gameIframe.webkitRequestFullscreen();
-            } else if (gameIframe.msRequestFullscreen) { /* IE/Edge */
-                gameIframe.msRequestFullscreen();
-            } else {
-                alert('Your browser does not support the Fullscreen API for iframes.');
+            try {
+                // Check for various browser implementations of fullscreen API
+                if (gameIframe.requestFullscreen) {
+                    gameIframe.requestFullscreen();
+                } else if (gameIframe.mozRequestFullScreen) { /* Firefox */
+                    gameIframe.mozRequestFullScreen();
+                } else if (gameIframe.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                    gameIframe.webkitRequestFullscreen();
+                } else if (gameIframe.msRequestFullscreen) { /* IE/Edge */
+                    gameIframe.msRequestFullscreen();
+                } else {
+                    console.warn('Fullscreen API not supported by this browser or element for iframe.');
+                    alert('Your browser does not support the Fullscreen API for this game.');
+                }
+            } catch (error) {
+                console.error('Fullscreen API call failed:', error);
+                // Specific error message for cross-origin issues
+                if (error.name === 'SecurityError' || error.name === 'NotAllowedError' || error.name === 'InvalidStateError') {
+                    alert('Could not go fullscreen. This might be due to browser security restrictions or the game not allowing fullscreen when embedded.');
+                } else {
+                    alert('An unexpected error occurred while trying to go fullscreen.');
+                }
             }
         });
     }
