@@ -5,7 +5,7 @@ function createGuessTheNumberGame(containerId) {
     const gameContainer = document.getElementById(containerId);
 
     if (!gameContainer) {
-        console.error(`Game container with ID '${containerId}' not found.`);
+        console.error(`Guess Game: Container with ID '${containerId}' not found.`);
         return;
     }
 
@@ -40,7 +40,7 @@ function createGuessTheNumberGame(containerId) {
 
         if (userGuess === randomNumber) {
             messageDisplay.textContent = `Congratulations! You guessed the number ${randomNumber} in ${attempts} attempts!`;
-            messageDisplay.style.color = 'var(--secondary-color)'; // Using CSS variable for consistency
+            messageDisplay.style.color = 'var(--secondary-color)';
             endGame(true);
         } else if (attempts >= maxAttempts) {
             messageDisplay.textContent = `Game Over! The number was ${randomNumber}.`;
@@ -50,7 +50,7 @@ function createGuessTheNumberGame(containerId) {
             messageDisplay.textContent = `Too ${userGuess < randomNumber ? 'low' : 'high'}! Try again. Attempts left: ${maxAttempts - attempts}`;
             messageDisplay.style.color = 'orange';
         }
-        guessInput.value = ''; // Clear input after guess
+        guessInput.value = '';
     }
 
     function endGame(won) {
@@ -123,9 +123,12 @@ function createGuessTheNumberGame(containerId) {
 
 // Ensure the DOM is fully loaded before trying to access elements
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded. Running main script.');
+
     // Initialize the "Guess the Number" game if its container exists
     const guessGameContainer = document.getElementById('guess-game-container');
     if (guessGameContainer) {
+        console.log('Guess game container found. Initializing game.');
         createGuessTheNumberGame('guess-game-container');
     }
 
@@ -134,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const gamesSection = document.getElementById('games');
 
     if (startPlayingButton && gamesSection) {
+        console.log('Hero button and games section found. Adding scroll event listener.');
         startPlayingButton.addEventListener('click', () => {
             gamesSection.scrollIntoView({ behavior: 'smooth' });
         });
@@ -141,33 +145,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fullscreen button functionality for game wrapper pages (will only run on game pages)
     const fullscreenButton = document.querySelector('.fullscreen-button');
-    const gameIframe = document.querySelector('.game-iframe');
+    const gameIframe = document.querySelector('.game-iframe'); // Selects the first iframe with this class
 
     if (fullscreenButton && gameIframe) {
+        console.log('Fullscreen button and game iframe found. Adding click listener.');
         fullscreenButton.addEventListener('click', () => {
+            console.log('Fullscreen button clicked.');
             try {
                 // Check for various browser implementations of fullscreen API
                 if (gameIframe.requestFullscreen) {
-                    gameIframe.requestFullscreen();
+                    gameIframe.requestFullscreen().then(() => {
+                        console.log('Fullscreen request initiated successfully.');
+                    }).catch(error => {
+                        console.error('Fullscreen request rejected or failed promise:', error);
+                        alert(`Fullscreen request failed: ${error.message || error.name}. This is often due to browser security or the game itself.`);
+                    });
                 } else if (gameIframe.mozRequestFullScreen) { /* Firefox */
                     gameIframe.mozRequestFullScreen();
+                    console.log('Fullscreen request (Firefox) initiated successfully.');
                 } else if (gameIframe.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
                     gameIframe.webkitRequestFullscreen();
+                    console.log('Fullscreen request (WebKit) initiated successfully.');
                 } else if (gameIframe.msRequestFullscreen) { /* IE/Edge */
                     gameIframe.msRequestFullscreen();
+                    console.log('Fullscreen request (MS) initiated successfully.');
                 } else {
                     console.warn('Fullscreen API not supported by this browser or element for iframe.');
                     alert('Your browser does not support the Fullscreen API for this game.');
                 }
             } catch (error) {
-                console.error('Fullscreen API call failed:', error);
-                // Specific error message for cross-origin issues
+                console.error('Caught error during fullscreen API call:', error);
+                // Specific error message for common fullscreen issues
                 if (error.name === 'SecurityError' || error.name === 'NotAllowedError' || error.name === 'InvalidStateError') {
-                    alert('Could not go fullscreen. This might be due to browser security restrictions or the game not allowing fullscreen when embedded.');
+                    alert('Could not go fullscreen. This is likely due to browser security restrictions, the game not allowing fullscreen when embedded, or cross-origin issues.');
                 } else {
-                    alert('An unexpected error occurred while trying to go fullscreen.');
+                    alert('An unexpected error occurred while trying to go fullscreen: ' + error.message);
                 }
             }
         });
+    } else {
+        console.log('Fullscreen button or game iframe not found on this page (expected on game wrapper pages).');
     }
 });
+    ```
+
+---
+
+**Instructions to update `script.js`:**
+
+1.  Go to your `fusion-gaming.github.io` repository on GitHub.
+2.  Click on the `script.js` file.
+3.  Click the "pencil" icon to edit the file.
+4.  **Replace all the existing code** in the editor with the JavaScript code provided above.
+5.  Add a commit message (e.g., "Regenerated script.js with enhanced fullscreen logging and error handling").
+6.  Click **"Commit changes"**.
+
+---
+
+**After you commit this:**
+
+1.  **Wait 5-10 minutes** for GitHub Pages to build and deploy.
+2.  Go to a game page (e.g., `https://fusion-gaming.github.io/games/snowrider-embed-page.html`).
+3.  **Perform a hard refresh:** (`Ctrl + F5` or `Cmd + Shift + R`).
+4.  **Open the Developer Console (F12 or Cmd+Option+I -> Console tab).**
+5.  **Click the "Fullscreen" button.**
+
+**Now, please report any new or changed messages you see in the Console.** These messages will be crucial. If you see alerts about "SecurityError" or "NotAllowedError," that confirms it's a browser security restriction with the embedded game content itself, which is beyond what standard web code can directly control.
