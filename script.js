@@ -121,6 +121,7 @@ function createGuessTheNumberGame(containerId) {
     messageDisplay.style.color = 'var(--light-text)';
 }
 
+
 // Ensure the DOM is fully loaded before trying to access elements
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM Content Loaded. Running main script.');
@@ -143,8 +144,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Removed Fullscreen button functionality as games now open in new tabs.
-    // const fullscreenButton = document.querySelector('.fullscreen-button');
-    // const gameIframe = document.querySelector('.game-iframe');
-    // if (fullscreenButton && gameIframe) { /* ... removed code ... */ }
+    // Removed all Firebase-related counter logic.
 });
